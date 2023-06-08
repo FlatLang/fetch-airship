@@ -40,6 +40,8 @@ const getRelease = async (
     if (includePrerelease) {
       const releases = await octokit.rest.repos.listReleases({ owner, repo });
 
+      releases.data.sort((a, b) => b.published_at?.localeCompare(a.published_at!) || 0);
+
       console.log("Releases:", releases.data);
 
       return {data: releases.data[0]!};
