@@ -152,6 +152,8 @@ const main = async (): Promise<void> => {
   const octokit = github.getOctokit(token, { baseUrl });
   const release = await getRelease(octokit, { owner, repo, version, includePrerelease });
 
+  console.log("Using release:", release);
+
   const assetFilterFn = usesRegex
     ? filterByRegex(file)
     : filterByFileName(file);
